@@ -1,0 +1,22 @@
+{
+  "name": "ovo-logistics-website",
+  "version": "1.0.0",
+  "description": "OVO Logistics Services Website",
+  "main": "index.html",
+  "scripts": {
+    "generate-sitemap": "node generate-sitemap.js",
+    "optimize-images": "node compress-images.js",
+    "build": "npm run generate-sitemap && npm run optimize-images"
+  },
+  "keywords": [
+    "logistics",
+    "delivery",
+    "nigeria",
+    "lagos"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "sharp": "^0.35.4"
+  }
+}

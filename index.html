@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OVO Logistics Services - Fast Delivery in Lagos & Nigeria</title>
+    <meta name="description" content="OVO Logistics Services provides fast, reliable, and secure logistics solutions across Lagos, Nigeria, and worldwide.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <!-- 3D Parallax Background -->
+    <div class="parallax-bg" id="parallaxBg"></div>
+
+    <header class="navbar glass">
+        <div class="logo">OVO Logistics</div>
+        <nav>
+            <a href="#services">Services</a>
+            <a href="#coverage">Coverage</a>
+            <a href="#booking">Book Now</a>
+            <a href="https://wa.me/2349041596476" class="btn-primary" target="_blank">WhatsApp Us</a>
+            
+            <div class="nav-controls">
+                <input type="text" id="searchInput" class="search-input" placeholder="Search services...">
+                <button id="themeToggle" class="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero split-layout">
+            <div class="hero-content left-side">
+                <h1 class="animate-fade-in-up">Fast & Secure Delivery in Lagos, Across Nigeria & Worldwide</h1>
+                <p class="subtitle animate-fade-in-up delay-1">Distance is never a barrier.</p>
+                <p class="description animate-fade-in-up delay-2">Whether you are sending a parcel across the street in Lagos or across states in Nigeria, we deliver on time, every time.</p>
+                <div class="cta-group animate-fade-in-up delay-3">
+                    <a href="https://wa.me/2349041596476" class="btn-primary pulse" target="_blank">📞 Contact: 09041596476</a>
+                    <a href="#booking" class="btn-secondary">Book Online</a>
+                </div>
+            </div>
+            
+            <div class="hero-render right-side animate-fade-in-up delay-2">
+                <img src="render-3d.webp" alt="OVO 3D Render" class="floating-3d" id="hero3d" />
+            </div>
+        </section>
+
+        <section id="services" class="services glass-section">
+            <h2 class="section-title">Our Services</h2>
+            <div class="service-grid perspective-grid">
+                <div class="card card-3d">
+                    <div class="card-inner">
+                        <div class="icon">📦</div>
+                        <h3>Pick Up & Drop Off</h3>
+                        <p>Reliable transport for your everyday packages. Quick and hassle-free local transits.</p>
+                    </div>
+                </div>
+                <div class="card card-3d">
+                    <div class="card-inner">
+                        <div class="icon">🏃‍♂️</div>
+                        <h3>Personal Errands</h3>
+                        <p>Delegate your time-consuming tasks within Lagos to our efficient dispatch team.</p>
+                    </div>
+                </div>
+                <div class="card card-3d">
+                    <div class="card-inner">
+                        <div class="icon">🚪</div>
+                        <h3>Doorstep Delivery</h3>
+                        <p>Enjoy the convenience of secure, direct-to-doorstep package handling.</p>
+                    </div>
+                </div>
+                <div class="card card-3d">
+                    <div class="card-inner">
+                        <div class="icon">✈️</div>
+                        <h3>International Shipping</h3>
+                        <p>Connecting your packages from Nigeria to destinations worldwide.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="coverage" class="coverage-section glass-section">
+            <div class="coverage-content">
+                <h2>Why Choose OVO Logistics?</h2>
+                <div class="features">
+                    <div class="feature card-3d">
+                        <div class="card-inner">
+                            <h3>⚡ Fast Turnaround</h3>
+                            <p>Quick pick-up and prompt delivery schedules.</p>
+                        </div>
+                    </div>
+                    <div class="feature card-3d">
+                        <div class="card-inner">
+                            <h3>🔒 Safe & Secure</h3>
+                            <p>Every package is handled with utmost care and accountability.</p>
+                        </div>
+                    </div>
+                    <div class="feature card-3d">
+                        <div class="card-inner">
+                            <h3>💬 Real-Time Support</h3>
+                            <p>Reach us directly for instant updates and booking.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3 class="coverage-title">Key Coverage in Lagos</h3>
+                <p class="coverage-list">📍 Mainland &bull; Island &bull; Ikeja &bull; Lekki &bull; Victoria Island &bull; Ikoyi &bull; Surulere &bull; Yaba &bull; Ikorodu &bull; Ajah &bull; Festac</p>
+                
+                <div class="trust-badges">
+                    <span>✔️ Trusted Logistics Partner</span>
+                    <span>✔️ Nationwide Reach</span>
+                    <span>✔️ 100% Secure Handling</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="booking" class="booking-section glass-section">
+            <h2 class="section-title">Online Delivery Booking</h2>
+            <form class="booking-form card-3d" id="bookingForm" action="#" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+                <div class="card-inner">
+                    <!-- Spam Protection Honeypot -->
+                    <p style="display: none;">
+                        <label>Don’t fill this out if you're human: <input name="bot-field" id="botField"></label>
+                    </p>
+                    
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required placeholder="Enter your name">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="090...">
+                    </div>
+                    <div class="form-group">
+                        <label for="pickup">Pick-up Address</label>
+                        <input type="text" id="pickup" name="pickup" required placeholder="e.g. Ikeja, Lagos">
+                    </div>
+                    <div class="form-group">
+                        <label for="dropoff">Drop-off Address</label>
+                        <input type="text" id="dropoff" name="dropoff" required placeholder="e.g. Abuja">
+                    </div>
+                    <div class="form-group">
+                        <label for="details">Package Details</label>
+                        <textarea id="details" name="details" rows="4" required placeholder="Describe what you are sending..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary btn-block">Schedule Pick-up</button>
+                </div>
+            </form>
+        </section>
+        
+        <section id="contact" class="contact-cta glass-section">
+            <div class="contact-content">
+                <h2>Ready to send a package?</h2>
+                <p>Fast, safe, and always on time. Let us handle the heavy lifting!</p>
+                <div class="phone-number">
+                    <span>📞 WhatsApp / Call us today:</span>
+                    <strong>09041596476</strong>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 OVO Logistics Services. All rights reserved.</p>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/2349041596476" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+        <svg viewBox="0 0 32 32" width="34" height="34" fill="currentColor">
+            <path d="M16 2.3c-7.6 0-13.7 6.1-13.7 13.7 0 2.4.6 4.7 1.8 6.7L2.4 29.6l7.1-1.9c2 1.1 4.2 1.7 6.5 1.7 7.6 0 13.7-6.1 13.7-13.7S23.6 2.3 16 2.3zm0 25.1c-2 0-4-.5-5.7-1.5l-.4-.2-4.2 1.1 1.1-4.1-.3-.4c-1.1-1.7-1.7-3.7-1.7-5.8 0-6.4 5.2-11.6 11.6-11.6s11.6 5.2 11.6 11.6-5.2 11.6-11.6 11.6zm6.3-8.6c-.3-.2-2-.1-2.4-.1-.3 0-.6.1-.8.4-.2.3-.9 1.1-1.1 1.3-.2.3-.4.3-.8.1-.3-.2-1.4-.5-2.7-1.7-1-1-1.7-2.1-1.9-2.5-.2-.3 0-.5.2-.7.2-.2.4-.4.5-.6.2-.2.3-.4.4-.7.1-.3 0-.5-.1-.7-.2-.3-1-2.4-1.3-3.3-.3-.9-.6-.8-.8-.8h-.7c-.2 0-.7.1-1 .4-.4.3-1.4 1.4-1.4 3.4s1.5 3.9 1.7 4.2c.2.3 2.9 4.4 7 6.1 1 .4 1.7.6 2.3.8.9.3 1.8.2 2.5.1.8-.1 2.4-1 2.8-1.9.3-.9.3-1.7.2-1.9-.1-.3-.4-.5-.8-.7z"/>
+        </svg>
+    </a>
+
+    <script src="script.js"></script>
+</body>
+</html>
