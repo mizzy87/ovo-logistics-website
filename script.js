@@ -127,4 +127,89 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    // --- Chatbot Logic ---
+    const chatWidget = document.getElementById('chatWidget');
+    const chatToggleBtn = document.getElementById('chatToggleBtn');
+    const closeChatBtn = document.getElementById('closeChatBtn');
+    const sendChatBtn = document.getElementById('sendChatBtn');
+    const chatInput = document.getElementById('chatInput');
+    const chatBody = document.getElementById('chatBody');
+
+    // Store the system prompt for reference or for passing to a backend later.
+    const SYSTEM_PROMPT = `
+Role and Identity: You are the official AI customer success representative for OVO Logistics Services, a company that specializes in fast, reliable, and secure logistics solutions across Lagos, Nigeria, and worldwide. Your name is OVO SupportBot.
+
+Tone and Personality:
+- Tone: Professional, warm, concise, and helpful.
+- Language: Keep answers simple, avoiding overly technical jargon.
+- Formatting: Use short paragraphs and bullet points.
+
+Core Objectives:
+1. Greet users politely and ask how you can assist them today.
+2. Answer frequently asked questions based only on the provided knowledge base.
+3. Guide users toward booking a delivery or contacting us via WhatsApp.
+4. Route frustrated customers to our human team.
+
+Knowledge Base & Business Information:
+- Business Hours: Monday - Saturday, 8 AM to 6 PM WAT
+- Contact Info: 09041596476
+- Location: Lagos, Nigeria (Coverage: Mainland, Island, Ikeja, Lekki, Victoria Island, Ikoyi, Surulere, Yaba, Ikorodu, Ajah, Festac)
+- Key Services: 
+  - Pick Up & Drop Off
+  - Personal Errands
+  - Doorstep Delivery
+  - International Shipping
+- Link to Booking/Sales: Direct them to the online booking form on the website or WhatsApp link.
+
+Strict Rules & Constraints:
+- No Hallucinations.
+- Handling Unknowns: Say "I don't have that exact information on hand, but I'd be happy to connect you with our human team on WhatsApp at 09041596476."
+- Brevity: Keep responses under 100 words.
+    `;
+
+    if (chatToggleBtn && chatWidget && closeChatBtn) {
+        chatToggleBtn.addEventListener('click', () => {
+            chatWidget.classList.add('active');
+            chatToggleBtn.style.display = 'none';
+        });
+
+        closeChatBtn.addEventListener('click', () => {
+            chatWidget.classList.remove('active');
+            chatToggleBtn.style.display = 'block';
+        });
+    }
+
+    function addMessage(text, sender) {
+        const msgDiv = document.createElement('div');
+        msgDiv.classList.add('message', sender === 'user' ? 'user-message' : 'bot-message');
+        msgDiv.textContent = text;
+        chatBody.appendChild(msgDiv);
+        chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    function handleSendMessage() {
+        const text = chatInput.value.trim();
+        if (!text) return;
+
+        addMessage(text, 'user');
+        chatInput.value = '';
+
+        // TODO: Replace this timeout with a real API call (e.g. fetch to your backend)
+        // You will send the SYSTEM_PROMPT along with the user's message to the LLM backend.
+        
+        setTimeout(() => {
+            addMessage("Thank you for your message! This is a mock response. Please connect your backend LLM to continue the conversation.", 'bot');
+        }, 1000);
+    }
+
+    if (sendChatBtn) {
+        sendChatBtn.addEventListener('click', handleSendMessage);
+    }
+
+    if (chatInput) {
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') handleSendMessage();
+        });
+    }
 });
