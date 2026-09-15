@@ -6,7 +6,8 @@
   "scripts": {
     "generate-sitemap": "node generate-sitemap.js",
     "optimize-images": "node compress-images.js",
-    "build": "npm run generate-sitemap && npm run optimize-images"
+    "build": "npm run generate-sitemap && npm run optimize-images",
+    "start": "python -m http.server 3000"
   },
   "keywords": [
     "logistics",
