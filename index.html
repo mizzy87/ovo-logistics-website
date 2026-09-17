@@ -17,8 +17,10 @@
         <nav>
             <a href="#services">Services</a>
             <a href="#coverage">Coverage</a>
+            <a href="#track">Track</a>
             <a href="#booking">Book Now</a>
             <a href="https://wa.me/2349041596476" class="btn-primary" target="_blank">WhatsApp Us</a>
+            <button id="openDbBtn" class="btn-db-portal" type="button" aria-label="Open Database Dispatch Portal">📦 Database Portal</button>
             
             <div class="nav-controls">
                 <input type="text" id="searchInput" class="search-input" placeholder="Search services...">
@@ -36,6 +38,7 @@
                 <div class="cta-group animate-fade-in-up delay-3">
                     <a href="https://wa.me/2349041596476" class="btn-primary pulse" target="_blank">📞 Contact: 09041596476</a>
                     <a href="#booking" class="btn-secondary">Book Online</a>
+                    <a href="#track" class="btn-secondary" style="border-color: var(--primary);">Track Package</a>
                 </div>
             </div>
             
@@ -113,36 +116,68 @@
             </div>
         </section>
 
+        <section id="track" class="track-section glass-section">
+            <h2 class="section-title">Track Your Shipment</h2>
+            <div class="track-container card-3d">
+                <div class="card-inner">
+                    <p style="text-align: center; color: var(--gray); margin-bottom: 1.5rem;">Enter your OVO Tracking ID (e.g. <strong>OVO-78219</strong>) or Registered Phone Number to check real-time package status stored in the database.</p>
+                    <form id="trackForm" class="track-box">
+                        <input type="text" id="trackInput" class="track-input" placeholder="Enter Tracking ID (e.g. OVO-78219) or Phone Number" required>
+                        <button type="submit" class="track-btn" id="trackSubmitBtn">Track Package</button>
+                    </form>
+                    <div id="trackingResult" class="tracking-result-card"></div>
+                </div>
+            </div>
+        </section>
+
         <section id="booking" class="booking-section glass-section">
             <h2 class="section-title">Online Delivery Booking</h2>
-            <form class="booking-form card-3d" id="bookingForm" action="#" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+            <form class="booking-form card-3d" id="bookingForm" novalidate>
                 <div class="card-inner">
                     <!-- Spam Protection Honeypot -->
                     <p style="display: none;">
                         <label>Don’t fill this out if you're human: <input name="bot-field" id="botField"></label>
                     </p>
                     
-                    <div class="form-group">
-                        <label for="name">Full Name</label>
-                        <input type="text" id="name" name="name" required placeholder="Enter your name">
+                    <div class="form-group" id="group-name">
+                        <label for="name">Full Name <span class="required-indicator">*</span></label>
+                        <input type="text" id="name" name="name" placeholder="Enter your full name" autocomplete="name" aria-describedby="nameError">
+                        <div class="field-error" id="nameError" role="alert" aria-live="polite"></div>
                     </div>
-                    <div class="form-group">
-                        <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone" name="phone" required placeholder="090...">
+
+                    <div class="form-group" id="group-phone">
+                        <div class="label-row">
+                            <label for="phone">Phone Number <span class="required-indicator">*</span></label>
+                            <span class="field-hint">e.g. 09041596476 or +234...</span>
+                        </div>
+                        <input type="tel" id="phone" name="phone" placeholder="09041596476 or +234..." autocomplete="tel" aria-describedby="phoneError">
+                        <div class="field-error" id="phoneError" role="alert" aria-live="polite"></div>
                     </div>
-                    <div class="form-group">
-                        <label for="pickup">Pick-up Address</label>
-                        <input type="text" id="pickup" name="pickup" required placeholder="e.g. Ikeja, Lagos">
+
+                    <div class="form-group" id="group-pickup">
+                        <label for="pickup">Pick-up Address <span class="required-indicator">*</span></label>
+                        <input type="text" id="pickup" name="pickup" placeholder="e.g. 14 Allen Avenue, Ikeja, Lagos" autocomplete="street-address" aria-describedby="pickupError">
+                        <div class="field-error" id="pickupError" role="alert" aria-live="polite"></div>
                     </div>
-                    <div class="form-group">
-                        <label for="dropoff">Drop-off Address</label>
-                        <input type="text" id="dropoff" name="dropoff" required placeholder="e.g. Abuja">
+
+                    <div class="form-group" id="group-dropoff">
+                        <label for="dropoff">Drop-off Address <span class="required-indicator">*</span></label>
+                        <input type="text" id="dropoff" name="dropoff" placeholder="e.g. Victoria Island, Lagos or Abuja" aria-describedby="dropoffError">
+                        <div class="field-error" id="dropoffError" role="alert" aria-live="polite"></div>
                     </div>
-                    <div class="form-group">
-                        <label for="details">Package Details</label>
-                        <textarea id="details" name="details" rows="4" required placeholder="Describe what you are sending..."></textarea>
+
+                    <div class="form-group" id="group-details">
+                        <div class="label-row">
+                            <label for="details">Package Details <span class="required-indicator">*</span></label>
+                            <span class="field-hint" id="detailsCounter">Min 5 chars</span>
+                        </div>
+                        <textarea id="details" name="details" rows="3" placeholder="Describe package contents, approximate weight, or special handling..." aria-describedby="detailsError"></textarea>
+                        <div class="field-error" id="detailsError" role="alert" aria-live="polite"></div>
                     </div>
-                    <button type="submit" class="btn-primary btn-block">Schedule Pick-up</button>
+
+                    <button type="submit" id="bookingSubmitBtn" class="btn-primary btn-block">Schedule Pick-up & Save to Database</button>
+
+                    <div id="bookingResult" class="booking-result-alert"></div>
                 </div>
             </form>
         </section>
@@ -160,8 +195,65 @@
     </main>
 
     <footer>
-        <p>&copy; 2026 OVO Logistics Services. All rights reserved.</p>
+        <p>&copy; 2026 OVO Logistics Services. All rights reserved. &bull; <a href="javascript:void(0)" id="footerDbBtn" style="color: var(--primary); text-decoration: underline; font-weight: 600;">📦 Dispatch Database Portal</a></p>
     </footer>
+
+    <!-- Database Management Portal Modal -->
+    <div class="modal-backdrop" id="dbModal" role="dialog" aria-modal="true" aria-labelledby="dbModalTitle">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title-group">
+                    <h3 id="dbModalTitle">📦 OVO Logistics Database Portal</h3>
+                    <span class="db-status-badge">🟢 Connected (File Storage)</span>
+                </div>
+                <button class="modal-close-btn" id="closeDbModal" aria-label="Close modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="db-stats-bar" id="dbStatsBar">
+                    <div class="stat-pill-card"><span class="stat-val" id="statTotal">-</span><span class="stat-label">Total Bookings</span></div>
+                    <div class="stat-pill-card"><span class="stat-val" id="statPending" style="color: #D97706;">-</span><span class="stat-label">Pending</span></div>
+                    <div class="stat-pill-card"><span class="stat-val" id="statPickedUp" style="color: #2563EB;">-</span><span class="stat-label">Picked Up</span></div>
+                    <div class="stat-pill-card"><span class="stat-val" id="statInTransit" style="color: #7C3AED;">-</span><span class="stat-label">In Transit</span></div>
+                    <div class="stat-pill-card"><span class="stat-val" id="statDelivered" style="color: #059669;">-</span><span class="stat-label">Delivered</span></div>
+                </div>
+
+                <!-- Recharts 7-Day Trend Visualization -->
+                <div id="dbTrendChartContainer" class="db-trend-chart-container"></div>
+
+                <div class="db-controls">
+                    <input type="text" id="dbSearchInput" class="db-search-input" placeholder="Search database by ID, customer name, phone, or location...">
+                    <select id="dbStatusFilter" class="db-filter-select">
+                        <option value="All">All Statuses</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Picked Up">Picked Up</option>
+                        <option value="In Transit">In Transit</option>
+                        <option value="Delivered">Delivered</option>
+                        <option value="Cancelled">Cancelled</option>
+                    </select>
+                    <button id="refreshDbBtn" class="db-action-btn" type="button">🔄 Refresh Data</button>
+                    <button id="exportCsvBtn" class="db-action-btn" type="button" style="background: #059669;">📥 Export CSV</button>
+                </div>
+                <div class="db-table-wrapper">
+                    <table class="db-table">
+                        <thead>
+                            <tr>
+                                <th>Tracking ID</th>
+                                <th>Customer & Phone</th>
+                                <th>Pick-up & Drop-off</th>
+                                <th>Package Details</th>
+                                <th>Date Added</th>
+                                <th>Delivery Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="dbTableBody">
+                            <tr><td colspan="7" style="text-align: center; padding: 2rem;">Loading database records...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Floating WhatsApp Button -->
     <a href="https://wa.me/2349041596476" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
@@ -186,6 +278,7 @@
     </div>
     <button class="chat-toggle-btn" id="chatToggleBtn" aria-label="Open Chat">💬</button>
 
+    <script src="chart-bundle.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
